@@ -6,3 +6,5 @@ router.post('/message', function (req, res, next) {
     // res.json()
     res.json(req);
 })
+
+export default router
