@@ -5,7 +5,7 @@ const router = Router()
 const line = require('@line/bot-sdk');
 
 const client = new line.Client({
-  channelAccessToken: 'K+plZ7HLBQjB8hIg5iU+wHmn4pAJX+LYzmNw7lPrAEdoD90KyYNXIFNmpnqJORfCUTxStJ3gytcNlixrZGPzENV+KAtxwlD+9cvczqRGMsIY4BSOI8UStT5/6aR8fYzUGCErE0SmeUWBe7/LphykIwdB04t89/1O/w1cDnyilFU='
+  channelAccessToken: 'HrXdvIM9KRt1EL7ZohRMpx8BtMsD0JjJC72SeqU/p1l0JZrIPeYq/GCo550/2NLZUTxStJ3gytcNlixrZGPzENV+KAtxwlD+9cvczqRGMsLzWOp4mDp1K2RukTmgeUrnxxCnFbVqo1HGhPnNtqf+agdB04t89/1O/w1cDnyilFU='
 });
 
 const message = {
@@ -13,18 +13,23 @@ const message = {
   text: 'Hello World!'
 };
 
-// client.replyMessage('<replyToken>', message)
-//   .then(() => {
-//     ...
-//   })
-//   .catch((err) => {
-//     // error handling
-//   });
 
 
 router.post('/message', function (req, res, next) {
+    var event = req.body.events[0]
+    if(event.type == "message") {
+        client.replyMessage(event.replyToken, event.message)
+        .then(() => {
+            //
+        })
+        .catch((err) => {
+            //
+        });
+    }
+    else {
+        //
+    }
     console.log(req.body);
-    // res.json()
     res.json(req.body);
 })
 
